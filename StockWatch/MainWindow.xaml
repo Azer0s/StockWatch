@@ -5,8 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StockWatch"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="500" Width="200">
     <Grid>
-        
+        <TextBox x:Name="stock" Height="23" Margin="10,10,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Enter stock:"/>
+        <TextBox x:Name="market" Height="23" Margin="10,38,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Enter market:"/>
+        <Button x:Name="addStock" Content="Add" Margin="10,66,9.6,0" VerticalAlignment="Top" Height="23"/>
+        <ListBox x:Name="stocks" Margin="10,94,10,10">
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Open" Click="OpenStock"/>
+                    <MenuItem Header="Delete" Click="DeleteStock"/>
+                </ContextMenu>
+            </ListBox.ContextMenu>
+        </ListBox>
     </Grid>
 </Window>
