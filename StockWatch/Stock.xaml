@@ -3,18 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:StockWatch"
-        xmlns:oxy="http://oxyplot.org/wpf"
+        xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="Stock" Height="300" Width="300">
-    <Window.DataContext>
-        <local:StockControl></local:StockControl>
-    </Window.DataContext>
     <Grid>
-        <oxy:Plot Title="{Binding Title}" Name="Plot">
-            <oxy:Plot.Series>
-                <oxy:LineSeries ItemsSource="{Binding Points}"/>
-            </oxy:Plot.Series>
-        </oxy:Plot>
+        <wpf:CartesianChart Name="Chart" LegendLocation="Right" >
+            <wpf:CartesianChart.AxisY>
+                <wpf:Axis Title="Price" LabelFormatter="{Binding YFormatter}"></wpf:Axis>
+            </wpf:CartesianChart.AxisY>
+            <wpf:CartesianChart.AxisX>
+                <wpf:Axis Title="Time" Name="YAxis"></wpf:Axis>
+            </wpf:CartesianChart.AxisX>
+        </wpf:CartesianChart>
     </Grid>
 </Window>
