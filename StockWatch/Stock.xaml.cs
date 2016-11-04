@@ -14,7 +14,8 @@ namespace StockWatch
     {
         public ChartValues<double> ChartValues;
         public string StockTitle;
-        public LineSeries CControl;
+        public LineSeries ChangeControl;
+        public LineSeries CloseControl;
         public bool ShouldStop;
         public Stock(string stock)
         {
@@ -26,15 +27,21 @@ namespace StockWatch
             ChartValues = new ChartValues<double> {0,0,0,0,0,0,0,0,0};
             YAxis.Labels = new [] {""};
 
-            CControl = new LineSeries
+            ChangeControl = new LineSeries
             {
                 Title = "",
                 Values = ChartValues
             };
 
+            CloseControl = new LineSeries()
+            {
+                Title = ""
+            };
+
             Chart.Series = new SeriesCollection
             {
-                CControl
+                ChangeControl,
+                CloseControl
             };
 
             ShouldStop = false;

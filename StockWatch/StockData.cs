@@ -46,7 +46,8 @@ namespace StockWatch
                         var value = double.Parse(resAsDict["l"].Replace(".", ","));
 
                         var time = resAsDict["lt_dts"];
-                        Application.Current.Dispatcher.BeginInvoke(new Action(() => _controlller.CControl.Title = resAsDict["c"] + "%"));
+                        Application.Current.Dispatcher.BeginInvoke(new Action(() => _controlller.ChangeControl.Title = "Change in percent: " + resAsDict["c"] + "%"));
+                        Application.Current.Dispatcher.BeginInvoke(new Action(() => _controlller.CloseControl.Title = "Last close price: " + resAsDict["pcls_fix"] + "$"));
 
                         //TODO Implement time
 
