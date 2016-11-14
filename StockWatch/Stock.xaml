@@ -3,17 +3,40 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:wpf="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
-        Title="Stock" Height="300" Width="300">
+        Height="300" Width="300">
     <Grid>
-        <wpf:CartesianChart Name="Chart" LegendLocation="Right" >
-            <wpf:CartesianChart.AxisY>
-                <wpf:Axis Title="Price" LabelFormatter="{Binding YFormatter}"></wpf:Axis>
-            </wpf:CartesianChart.AxisY>
-            <wpf:CartesianChart.AxisX>
-                <wpf:Axis Title="Time" Name="YAxis"></wpf:Axis>
-            </wpf:CartesianChart.AxisX>
-        </wpf:CartesianChart>
+        <lvc:CartesianChart Background="#222E31">
+            <lvc:CartesianChart.Series>
+                <lvc:LineSeries Values="{Binding Values2}" StrokeThickness="2" 
+                       Stroke="#1C8FC5" Fill="Transparent" LineSmoothness="0" 
+                       PointGeometrySize="15" PointForeround="#222E31" Title="High"/>
+                <lvc:LineSeries Values="{Binding Values1}" StrokeThickness="4" StrokeDashArray="2" 
+                       Stroke="#6BBA45" Fill="Transparent" LineSmoothness="0" PointGeometry="{x:Null}" Title="Low"/>
+            </lvc:CartesianChart.Series>
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis IsMerged="True" Labels="{Binding Labels}" LabelsRotation="13" Title="Time">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator StrokeThickness="1" StrokeDashArray="2">
+                            <lvc:Separator.Stroke>
+                                <SolidColorBrush Color="#404F56" />
+                            </lvc:Separator.Stroke>
+                        </lvc:Separator>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis IsMerged="True" Title="Price" LabelFormatter="{Binding YFormatter}">
+                    <lvc:Axis.Separator>
+                        <lvc:Separator StrokeThickness="1.5" StrokeDashArray="4">
+                            <lvc:Separator.Stroke>
+                                <SolidColorBrush Color="#404F56" />
+                            </lvc:Separator.Stroke>
+                        </lvc:Separator>
+                    </lvc:Axis.Separator>
+                </lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
     </Grid>
 </Window>

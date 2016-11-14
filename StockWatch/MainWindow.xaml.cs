@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Configuration;
+using Microsoft.Win32;
 
 namespace StockWatch
 {
@@ -20,9 +23,29 @@ namespace StockWatch
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly int _precision;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            string[] args = Environment.GetCommandLineArgs();
+
+            try
+            {
+                if (args.Length > 0)
+                {
+                    WindowState = WindowState.Minimized;
+                    var s = new Stock(args[1]);
+                    s.Show();
+                }
+            }
+            catch (Exception)
+            {
+            }       
+
+            _precision = int.Parse(ConfigurationManager.AppSettings["precision"]);
+
             stock.GotFocus += delegate
             {
                 if (stock.Text == "Enter stock:")
@@ -39,34 +62,21 @@ namespace StockWatch
                 }
             };
 
-            market.GotFocus += delegate
-            {
-                if (market.Text == "Enter market:")
-                {
-                    market.Text = "";
-                }
-            };
-
-            market.LostFocus += delegate
-            {
-                if (market.Text == "")
-                {
-                    market.Text = "Enter market:";
-                }
-            };
-
             addStock.Click += delegate
             {
-                if (market.Text != "Enter market:" && market.Text != "" && stock.Text != "" && stock.Text != "Enter stock:")
+                if (stock.Text != "" && stock.Text != "Enter stock:")
                 {
-                    var stockText = market.Text + ":" + stock.Text;
-                    if (!stocks.Items.Contains(stockText))
+                    if (!stocks.Items.Contains(stock.Text))
                     {
-                        stocks.Items.Add(stockText);
-                        market.Text = "Enter market:";
+                        stocks.Items.Add(stock.Text);
                         stock.Text = "Enter stock:";
                     }
                 }
+            };
+
+            Closing += delegate
+            {
+                Environment.Exit(0);
             };
         }
 
@@ -83,8 +93,28 @@ namespace StockWatch
             if (stocks.SelectedIndex == -1) return;
 
             var stock = stocks.Items[stocks.SelectedIndex];
-            Stock s = new Stock(stock.ToString());
+            var s = new Stock(stock.ToString(),"1y", _precision);
             s.Show();
+        }
+
+        private void ChangeOptions(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void GetSnaphot(object sender, RoutedEventArgs e)
+        {
+            var saveFileDialog1 = new SaveFileDialog
+            {
+                Filter = "StockWatch Snapshot (*.swsnapshot)|*.swsnapshot|All files (*.*)|*.*",
+                FilterIndex = 1,
+                RestoreDirectory = true
+            };
+
+            if (saveFileDialog1.ShowDialog() != true) return;
+            var path = saveFileDialog1.FileName;
+            var s = new Stock(stocks.SelectedItem.ToString(),"1y",_precision);
+            Task.Run(()=>s.SaveSnapshot(path));
         }
     }
 }
