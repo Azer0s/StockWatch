@@ -82,7 +82,7 @@ namespace StockWatch
                     if (!stocks.Items.Contains(stock.Text))
                     {
                         stocks.Items.Add(stock.Text);
-                        _stockList.Add(new Configuration(stock.Text,stock.Text,"1d",0,true));
+                        _stockList.Add(new Configuration(stock.Text,stock.Text,"1d",0,false));
                         File.WriteAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json", JsonConvert.SerializeObject(_stockList));
                         stock.Text = "Enter stock:";
                     }

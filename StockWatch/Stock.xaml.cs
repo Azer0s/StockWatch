@@ -11,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
 using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Configurations;
@@ -41,7 +42,7 @@ namespace StockWatch
             Timespan = timeSpan;
             StockName = stock;
             Precision = prec;
-            YFormatter = value => value + "$";
+            YFormatter = value => Math.Round(value,2) + "$";
             Labels = new List<string>();
 
             Chart.DisableAnimations = !animations;
@@ -67,7 +68,7 @@ namespace StockWatch
                                 Application.Current.MainWindow.Height -= 1;
                             }));
                             
-                            Thread.Sleep(1000);
+                            Thread.Sleep(30000);
                         }
                     }
                     else
