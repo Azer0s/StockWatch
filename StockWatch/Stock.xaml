@@ -6,8 +6,8 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Height="300" Width="300">
-    <Grid>
-        <lvc:CartesianChart Background="#222E31">
+    <Grid Name="Grid">
+        <lvc:CartesianChart Background="#222E31" Name="Chart">
             <lvc:CartesianChart.Series>
                 <lvc:LineSeries Values="{Binding Values2}" StrokeThickness="2" 
                        Stroke="#1C8FC5" Fill="Transparent" LineSmoothness="0" 
@@ -27,7 +27,7 @@
                 </lvc:Axis>
             </lvc:CartesianChart.AxisX>
             <lvc:CartesianChart.AxisY>
-                <lvc:Axis IsMerged="True" Title="Price" LabelFormatter="{Binding YFormatter}">
+                <lvc:Axis IsMerged="True" Title="Price" LabelFormatter="{Binding YFormatter, Mode=TwoWay}">
                     <lvc:Axis.Separator>
                         <lvc:Separator StrokeThickness="1.5" StrokeDashArray="4">
                             <lvc:Separator.Stroke>

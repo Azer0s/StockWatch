@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlServerCe;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using LiveCharts;
+using LiveCharts.Configurations;
 using LiveCharts.Wpf;
 using LiveCharts.Wpf.Charts.Base;
 using Newtonsoft.Json;
@@ -19,7 +23,7 @@ namespace StockWatch
     /// <summary>
     /// Interaction logic for Stock.xaml
     /// </summary>
-    public partial class Stock : Window
+    public partial class Stock : Window, INotifyPropertyChanged
     {
         private int Precision { get; }
         private string Timespan { get; }
@@ -28,15 +32,19 @@ namespace StockWatch
         public ChartValues<double> Values2 { get; set; }
         public List<string> Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
+        private bool shouldStop = false;
 
-        public Stock(string stock, string timeSpan, int prec)
+        public Stock(string stock, string timeSpan, int prec,bool animations)
         {
             InitializeComponent();
 
             Timespan = timeSpan;
             StockName = stock;
             Precision = prec;
-            YFormatter = value => value.ToString("C");
+            YFormatter = value => value + "$";
+            Labels = new List<string>();
+
+            Chart.DisableAnimations = !animations;
 
             Task.Run(() =>
             {
@@ -46,7 +54,26 @@ namespace StockWatch
                 }
                 if (timeSpan.Contains("d"))
                 {
-                    GetStockDataDay();
+                    if (timeSpan == "1d")
+                    {
+                        while (true)
+                        {
+                            Application.Current.Dispatcher.Invoke(new Action(() => {
+                                Application.Current.MainWindow = this;
+                                Application.Current.MainWindow.Height += 1;
+                            }));
+                            GetStockDataDay();
+                            Application.Current.Dispatcher.Invoke(new Action(() => {
+                                Application.Current.MainWindow.Height -= 1;
+                            }));
+                            
+                            Thread.Sleep(1000);
+                        }
+                    }
+                    else
+                    {
+                        GetStockDataDay();
+                    }
                 }
             });
         }
@@ -138,12 +165,12 @@ namespace StockWatch
                 var data = DownloaddData();
 
                 int j = 0;
-                var labels = new List<string>(); 
+                Labels.Clear();
                 foreach (var variable in data.series)
                 {
                     if (j == Precision)
                     {
-                        labels.Add(UnixTimeStampToDateTime(variable.Timestamp).ToString("g"));
+                        Labels.Add(UnixTimeStampToDateTime(variable.Timestamp).ToString("g"));
                         j = 0;
                     }
                     else
@@ -154,7 +181,6 @@ namespace StockWatch
 
                 Application.Current.Dispatcher.Invoke(new Action(() => {
                     Title = data.meta.Company_Name + " " + UnixTimeStampToDateTime(data.Timestamp.min).ToString("g") + " - " + UnixTimeStampToDateTime(data.Timestamp.max).ToString("g");
-                    Labels = labels;
                     DataContext = this;
                 }));
 
@@ -175,6 +201,7 @@ namespace StockWatch
                         i++;
                     }
                 }
+                Console.WriteLine(UnixTimeStampToDateTime(data.series[data.series.Count - 1].Timestamp));
             }
             catch (Exception)
             {
@@ -347,6 +374,20 @@ namespace StockWatch
             {
                 conn.Close();
             }              
-        }  
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    public class StockModel
+    {
+        public DateTime TimeStamp { get; set; }
+        public double High { get; set; }
+        public double Low { get; set; }
     }
 }

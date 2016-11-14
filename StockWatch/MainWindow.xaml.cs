@@ -14,7 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Configuration;
+using System.IO;
 using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace StockWatch
 {
@@ -23,7 +25,7 @@ namespace StockWatch
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly int _precision;
+        private List<Configuration> _stockList = new List<Configuration>();
 
         public MainWindow()
         {
@@ -35,16 +37,27 @@ namespace StockWatch
             {
                 if (args.Length > 0)
                 {
-                    WindowState = WindowState.Minimized;
                     var s = new Stock(args[1]);
+                    WindowState = WindowState.Minimized;
                     s.Show();
                 }
             }
             catch (Exception)
             {
-            }       
+            }
 
-            _precision = int.Parse(ConfigurationManager.AppSettings["precision"]);
+            try
+            {
+                _stockList = JsonConvert.DeserializeObject<List<Configuration>>(System.IO.File.ReadAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json"));
+
+                foreach (var variable in _stockList)
+                {
+                    stocks.Items.Add(variable.Name);
+                }
+            }
+            catch (Exception)
+            {
+            }
 
             stock.GotFocus += delegate
             {
@@ -69,6 +82,8 @@ namespace StockWatch
                     if (!stocks.Items.Contains(stock.Text))
                     {
                         stocks.Items.Add(stock.Text);
+                        _stockList.Add(new Configuration(stock.Text,stock.Text,"1d",0,true));
+                        File.WriteAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json", JsonConvert.SerializeObject(_stockList));
                         stock.Text = "Enter stock:";
                     }
                 }
@@ -86,24 +101,69 @@ namespace StockWatch
 
             var stock = stocks.Items[stocks.SelectedIndex];
             stocks.Items.Remove(stock);
+
+            foreach (var variable in _stockList)
+            {
+                if (variable.Name == stock.ToString())
+                {
+                    _stockList.Remove(variable);
+                    File.WriteAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                    break;
+                }
+            }
         }
 
         public void OpenStock(object sender, RoutedEventArgs e)
         {
             if (stocks.SelectedIndex == -1) return;
 
-            var stock = stocks.Items[stocks.SelectedIndex];
-            var s = new Stock(stock.ToString(),"1y", _precision);
-            s.Show();
+            var stock = stocks.Items[stocks.SelectedIndex].ToString();
+
+            foreach (var variable in _stockList)
+            {
+                if (variable.Name != stock) continue;
+                var s = new Stock(variable.Stock,variable.Time,variable.Precision,variable.Animations);
+                s.Show();
+                break;
+            }
         }
 
         private void ChangeOptions(object sender, RoutedEventArgs e)
         {
+            if (stocks.SelectedIndex == -1) return;
 
+            foreach (var variable in _stockList)
+            {
+                if (variable.Name == stocks.SelectedItem.ToString())
+                {
+                    var options = new Options(variable.Name,variable.Stock,variable.Time,variable.Precision,variable.Animations);
+
+                    if (options.ShowDialog() == true)
+                    {
+                        _stockList[_stockList.IndexOf(variable)].Name = options.Name;
+                        _stockList[_stockList.IndexOf(variable)].Stock = options.Stock;
+                        _stockList[_stockList.IndexOf(variable)].Time = options.Time;
+                        _stockList[_stockList.IndexOf(variable)].Precision = options.Precision;
+                        _stockList[_stockList.IndexOf(variable)].Animations = options.Animations;
+
+                        File.WriteAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json", JsonConvert.SerializeObject(_stockList));
+
+                        stocks.Items.Clear();
+                        foreach (var var in _stockList)
+                        {
+                            stocks.Items.Add(var.Name);
+                        }
+
+                        break;
+                    }
+                }
+            }
         }
 
         private void GetSnaphot(object sender, RoutedEventArgs e)
         {
+            if (stocks.SelectedIndex == -1) return;
+
             var saveFileDialog1 = new SaveFileDialog
             {
                 Filter = "StockWatch Snapshot (*.swsnapshot)|*.swsnapshot|All files (*.*)|*.*",
@@ -113,8 +173,14 @@ namespace StockWatch
 
             if (saveFileDialog1.ShowDialog() != true) return;
             var path = saveFileDialog1.FileName;
-            var s = new Stock(stocks.SelectedItem.ToString(),"1y",_precision);
-            Task.Run(()=>s.SaveSnapshot(path));
+            foreach (var variable in _stockList)
+            {
+                if (variable.Name != stocks.SelectedItem.ToString()) continue;
+                var s = new Stock(variable.Stock, variable.Time, variable.Precision,variable.Animations);
+                Task.Run(() => s.SaveSnapshot(path));
+                break;
+            }
+            
         }
     }
 }
