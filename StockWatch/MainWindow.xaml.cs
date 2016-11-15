@@ -25,7 +25,7 @@ namespace StockWatch
     /// </summary>
     public partial class MainWindow : Window
     {
-        private List<Configuration> _stockList = new List<Configuration>();
+        private readonly List<Configuration> _stockList = new List<Configuration>();
 
         public MainWindow()
         {

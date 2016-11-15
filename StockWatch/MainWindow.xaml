@@ -14,7 +14,7 @@
                 <ContextMenu>
                     <MenuItem Header="Open" Click="OpenStock"/>
                     <MenuItem Header="Options" Click="ChangeOptions"/>
-                    <MenuItem Header="Get snapshot" Click="GetSnaphot"/>
+                    <MenuItem Header="Make snapshot" Click="GetSnaphot"/>
                     <MenuItem Header="Delete" Click="DeleteStock"/>
                 </ContextMenu>
             </ListBox.ContextMenu>

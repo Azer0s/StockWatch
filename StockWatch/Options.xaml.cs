@@ -35,6 +35,7 @@ namespace StockWatch
             comboBox.Items.Add("3m");
             comboBox.Items.Add("1y");
             comboBox.Items.Add("5y");
+            comboBox.Items.Add("max");
 
             comboBox1.Items.Add("0");
             comboBox1.Items.Add("1");

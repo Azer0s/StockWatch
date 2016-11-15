@@ -5,18 +5,10 @@ using System.Data.SqlServerCe;
 using System.Globalization;
 using System.IO;
 using System.Net.Http;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Interop;
-using System.Windows.Media;
 using LiveCharts;
-using LiveCharts.Configurations;
-using LiveCharts.Wpf;
-using LiveCharts.Wpf.Charts.Base;
 using Newtonsoft.Json;
 
 namespace StockWatch
@@ -33,7 +25,7 @@ namespace StockWatch
         public ChartValues<double> Values2 { get; set; }
         public List<string> Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
-        private bool shouldStop = false;
+        private bool isSet { get; set; }
 
         public Stock(string stock, string timeSpan, int prec,bool animations)
         {
@@ -68,7 +60,7 @@ namespace StockWatch
                                 Application.Current.MainWindow.Height -= 1;
                             }));
                             
-                            Thread.Sleep(30000);
+                            Thread.Sleep(15000);
                         }
                     }
                     else
@@ -164,6 +156,17 @@ namespace StockWatch
             try
             {                
                 var data = DownloaddData();
+
+                if (!isSet)
+                {
+                    if (data.meta.currency == "EUR")
+                    {
+                        Application.Current.Dispatcher.Invoke(new Action(() => {
+                            YFormatter = value => Math.Round(value, 2) + "€";
+                        }));
+                    }
+                    isSet = true;
+                }
 
                 int j = 0;
                 Labels.Clear();
@@ -383,12 +386,5 @@ namespace StockWatch
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-    }
-
-    public class StockModel
-    {
-        public DateTime TimeStamp { get; set; }
-        public double High { get; set; }
-        public double Low { get; set; }
     }
 }
