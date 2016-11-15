@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StockWatch"
         mc:Ignorable="d"
-        Title="Options" Height="327.25" Width="300" >
+        Title="Options" Height="327.25" Width="300" Icon="Icon.ico">
     <Grid>
         <Label x:Name="label2" Content="Name" Margin="10,10,10,0" VerticalAlignment="Top"/>
         <TextBox x:Name="textBox" Height="23" Margin="10,36,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>

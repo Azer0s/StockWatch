@@ -37,8 +37,13 @@ namespace StockWatch
 
             try
             {
+                if (!new FileInfo(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json").Exists)
+                {
+                    Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch");
+                    File.Create(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json");
+                }
                 // ReSharper disable once AssignNullToNotNullAttribute
-                _stockList = JsonConvert.DeserializeObject<List<Configuration>>(File.ReadAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json"));
+                _stockList = JsonConvert.DeserializeObject<List<Configuration>>(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json"));
 
                 foreach (var variable in _stockList)
                 {
@@ -73,9 +78,16 @@ namespace StockWatch
                     if (!stocks.Items.Contains(stock.Text))
                     {
                         stocks.Items.Add(stock.Text);
-                        _stockList.Add(new Configuration(stock.Text,stock.Text,"1d",0,false));
-                        // ReSharper disable once AssignNullToNotNullAttribute
-                        File.WriteAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                        _stockList.Add(new Configuration(stock.Text, stock.Text, "1d", 0, false));
+                        try
+                        {
+                            // ReSharper disable once AssignNullToNotNullAttribute
+                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                        }
+                        catch (Exception)
+                        {
+                            // ignored
+                        }
                         stock.Text = "Enter stock:";
                     }
                 }
@@ -99,7 +111,8 @@ namespace StockWatch
                 if (variable.Name == stock.ToString())
                 {
                     _stockList.Remove(variable);
-                    File.WriteAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                    // ReSharper disable once AssignNullToNotNullAttribute
+                    File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
                     break;
                 }
             }
@@ -139,7 +152,7 @@ namespace StockWatch
                         _stockList[_stockList.IndexOf(variable)].Animations = options.Animations;
 
                         // ReSharper disable once AssignNullToNotNullAttribute
-                        File.WriteAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                        File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
 
                         stocks.Items.Clear();
                         foreach (var var in _stockList)
