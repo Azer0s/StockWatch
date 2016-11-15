@@ -9,6 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using LiveCharts;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 
 namespace StockWatch
@@ -25,9 +26,9 @@ namespace StockWatch
         public ChartValues<double> Values2 { get; set; }
         public List<string> Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
-        private bool isSet { get; set; }
+        private bool IsSet { get; set; }
 
-        public Stock(string stock, string timeSpan, int prec,bool animations)
+        public Stock(string stock, string timeSpan, int prec,bool animations, bool snapshot)
         {
             InitializeComponent();
 
@@ -38,6 +39,11 @@ namespace StockWatch
             Labels = new List<string>();
 
             Chart.DisableAnimations = !animations;
+
+            if (snapshot)
+            {
+                return;
+            }
 
             Task.Run(() =>
             {
@@ -51,14 +57,14 @@ namespace StockWatch
                     {
                         while (true)
                         {
-                            Application.Current.Dispatcher.Invoke(new Action(() => {
+                            Application.Current.Dispatcher.Invoke(() => {
                                 Application.Current.MainWindow = this;
                                 Application.Current.MainWindow.Height += 1;
-                            }));
+                            });
                             GetStockDataDay();
-                            Application.Current.Dispatcher.Invoke(new Action(() => {
+                            Application.Current.Dispatcher.Invoke(() => {
                                 Application.Current.MainWindow.Height -= 1;
-                            }));
+                            });
                             
                             Thread.Sleep(15000);
                         }
@@ -118,11 +124,11 @@ namespace StockWatch
                     }
                 }
 
-                Application.Current.Dispatcher.Invoke(new Action(() => {
+                Application.Current.Dispatcher.Invoke(() => {
                     Title = data.meta.Company_Name + " " + TimeNumToDateTime(data.Date.min).ToString("g") + " - " + TimeNumToDateTime(data.Date.max).ToString("g");
                     Labels = labels;
                     DataContext = this;
-                }));
+                });
 
                 Values1 = new ChartValues<double>();
                 Values2 = new ChartValues<double>();
@@ -144,10 +150,10 @@ namespace StockWatch
             }
             catch (Exception)
             {
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     Title = "There was an error!";
-                }));
+                });
             }
         }
 
@@ -157,15 +163,15 @@ namespace StockWatch
             {                
                 var data = DownloaddData();
 
-                if (!isSet)
+                if (!IsSet)
                 {
                     if (data.meta.currency == "EUR")
                     {
-                        Application.Current.Dispatcher.Invoke(new Action(() => {
+                        Application.Current.Dispatcher.Invoke(() => {
                             YFormatter = value => Math.Round(value, 2) + "€";
-                        }));
+                        });
                     }
-                    isSet = true;
+                    IsSet = true;
                 }
 
                 int j = 0;
@@ -183,10 +189,10 @@ namespace StockWatch
                     }
                 }
 
-                Application.Current.Dispatcher.Invoke(new Action(() => {
+                Application.Current.Dispatcher.Invoke(() => {
                     Title = data.meta.Company_Name + " " + UnixTimeStampToDateTime(data.Timestamp.min).ToString("g") + " - " + UnixTimeStampToDateTime(data.Timestamp.max).ToString("g");
                     DataContext = this;
-                }));
+                });
 
                 Values1 = new ChartValues<double>();
                 Values2 = new ChartValues<double>();
@@ -209,17 +215,17 @@ namespace StockWatch
             }
             catch (Exception)
             {
-                Application.Current.Dispatcher.Invoke(new Action(() =>
+                Application.Current.Dispatcher.Invoke(() =>
                 {
                     Title = "There was an error!";
-                }));
+                });
             }          
         }
 
         public static DateTime UnixTimeStampToDateTime(int unixTimeStamp)
         {
             // Unix timestamp is seconds past epoch
-            System.DateTime dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc);
+            var dtDateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             dtDateTime = dtDateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dtDateTime;
         }
@@ -277,7 +283,7 @@ namespace StockWatch
                     File.Delete(path);
 
                 var connStr = $"Data Source={path};Max Database Size=4091";
-                SqlCeEngine engine = new SqlCeEngine(connStr);
+                var engine = new SqlCeEngine(connStr);
                 engine.CreateDatabase();
 
                 SqlCeConnection conn = null;
@@ -326,12 +332,13 @@ namespace StockWatch
                         cmd.ExecuteNonQuery();
                     }
                 }
-                catch(Exception)
+                catch (Exception)
                 {
+                    // ignored
                 }
                 finally
                 {
-                    conn.Close();
+                    conn?.Close();
                 }
             }
         }
@@ -372,11 +379,11 @@ namespace StockWatch
             }
             catch (Exception)
             {
-
+                // ignored
             }
             finally
             {
-                conn.Close();
+                conn?.Close();
             }              
         }
 
@@ -385,6 +392,23 @@ namespace StockWatch
         protected virtual void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void Snapshot_OnClick(object sender, RoutedEventArgs e)
+        {
+            Task.Run(() =>
+            {
+                var saveFileDialog1 = new SaveFileDialog
+                {
+                    Filter = "StockWatch Snapshot (*.swsnapshot)|*.swsnapshot|All files (*.*)|*.*",
+                    FilterIndex = 1,
+                    RestoreDirectory = true
+                };
+
+                if (saveFileDialog1.ShowDialog() != true) return;
+                var path = saveFileDialog1.FileName;
+                SaveSnapshot(path);
+            });            
         }
     }
 }

@@ -1,19 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Configuration;
 using System.IO;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -44,11 +32,13 @@ namespace StockWatch
             }
             catch (Exception)
             {
+                // ignored
             }
 
             try
             {
-                _stockList = JsonConvert.DeserializeObject<List<Configuration>>(System.IO.File.ReadAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json"));
+                // ReSharper disable once AssignNullToNotNullAttribute
+                _stockList = JsonConvert.DeserializeObject<List<Configuration>>(File.ReadAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json"));
 
                 foreach (var variable in _stockList)
                 {
@@ -57,6 +47,7 @@ namespace StockWatch
             }
             catch (Exception)
             {
+                // ignored
             }
 
             stock.GotFocus += delegate
@@ -83,6 +74,7 @@ namespace StockWatch
                     {
                         stocks.Items.Add(stock.Text);
                         _stockList.Add(new Configuration(stock.Text,stock.Text,"1d",0,false));
+                        // ReSharper disable once AssignNullToNotNullAttribute
                         File.WriteAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json", JsonConvert.SerializeObject(_stockList));
                         stock.Text = "Enter stock:";
                     }
@@ -122,7 +114,7 @@ namespace StockWatch
             foreach (var variable in _stockList)
             {
                 if (variable.Name != stock) continue;
-                var s = new Stock(variable.Stock,variable.Time,variable.Precision,variable.Animations);
+                var s = new Stock(variable.Stock,variable.Time,variable.Precision,variable.Animations,false);
                 s.Show();
                 break;
             }
@@ -146,6 +138,7 @@ namespace StockWatch
                         _stockList[_stockList.IndexOf(variable)].Precision = options.Precision;
                         _stockList[_stockList.IndexOf(variable)].Animations = options.Animations;
 
+                        // ReSharper disable once AssignNullToNotNullAttribute
                         File.WriteAllText(new FileInfo(System.Reflection.Assembly.GetEntryAssembly().Location).DirectoryName + "\\stocks.json", JsonConvert.SerializeObject(_stockList));
 
                         stocks.Items.Clear();
@@ -176,7 +169,7 @@ namespace StockWatch
             foreach (var variable in _stockList)
             {
                 if (variable.Name != stocks.SelectedItem.ToString()) continue;
-                var s = new Stock(variable.Stock, variable.Time, variable.Precision,variable.Animations);
+                var s = new Stock(variable.Stock, variable.Time, variable.Precision,variable.Animations,true);
                 Task.Run(() => s.SaveSnapshot(path));
                 break;
             }

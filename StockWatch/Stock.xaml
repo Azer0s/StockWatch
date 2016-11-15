@@ -8,6 +8,11 @@
         Height="300" Width="300">
     <Grid Name="Grid">
         <lvc:CartesianChart Background="#222E31" Name="Chart">
+            <lvc:CartesianChart.ContextMenu>
+                <ContextMenu Name="ContextMenu">
+                    <MenuItem Header="Make snapshot" Click="Snapshot_OnClick"></MenuItem>
+                </ContextMenu>
+            </lvc:CartesianChart.ContextMenu>
             <lvc:CartesianChart.Series>
                 <lvc:LineSeries Values="{Binding Values2}" StrokeThickness="2" 
                        Stroke="#1C8FC5" Fill="Transparent" LineSmoothness="0" 
