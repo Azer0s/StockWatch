@@ -1171,7 +1171,7 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
-		<row><td>simule_1_simulevski</td><td>ProgramMenuFolder</td><td>SIMULE~1|Simulevski</td><td/><td>1</td><td/></row>
+		<row><td>simule_1_simulevski</td><td>ProgramMenuFolder</td><td>STOCKW~1|StockWatch</td><td/><td>1</td><td/></row>
 		<row><td>stockw_1_stockwatch</td><td>simule_1_simulevski</td><td>STOCKW~1|StockWatch</td><td/><td>1</td><td/></row>
 	</table>
 
@@ -2611,7 +2611,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Simulevski</td><td>0</td><td/><td>2107907253</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>2107921621</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
@@ -3712,8 +3712,8 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.Simulevski.com</td><td>0</td><td/><td>2107907253</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>Simulevski</td><td>0</td><td/><td>2107907253</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.StockWatch.com</td><td>0</td><td/><td>2107921621</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>2107921621</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>2107950867</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>2107932371</td></row>
 	</table>
@@ -3961,7 +3961,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{F852075B-A51D-49CF-BE63-6803351958ED}</td></row>
 		<row><td>ISUSSignature</td><td>{FBB7CD7E-2CC7-410B-AAD7-662685FC5F9E}</td></row>
-		<row><td>ISVisitedViews</td><td>viewAssistant</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewShortcuts</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
