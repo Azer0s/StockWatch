@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
+using System.Runtime.Remoting.Contexts;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
@@ -17,23 +18,31 @@ namespace StockWatch
 
         public MainWindow()
         {
-            InitializeComponent();
-
             string[] args = Environment.GetCommandLineArgs();
 
             try
             {
                 if (args.Length > 0)
                 {
-                    var s = new Stock(args[1]);
-                    WindowState = WindowState.Minimized;
-                    s.Show();
+                    if (args[1] == "-c")
+                    {
+                        ConsoleModeStart();
+                        return;
+                    }
+                    else
+                    {
+                        var s = new Stock(args[1]);
+                        WindowState = WindowState.Minimized;
+                        s.Show();
+                    }                    
                 }
             }
             catch (Exception)
             {
                 // ignored
             }
+
+            InitializeComponent();
 
             try
             {
@@ -97,6 +106,38 @@ namespace StockWatch
             {
                 Environment.Exit(0);
             };
+        }
+
+        private void ConsoleModeStart()
+        {
+            var list = JsonConvert.DeserializeObject<List<Configuration>>(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json"));
+            this.Close();
+
+            while (true)
+            {
+                Console.WriteLine(@"StockWatch - Console Mode");
+                Console.WriteLine(@"-------------------------");
+                Console.WriteLine(@"[0] Add new stock");
+
+                var i = 1;
+                foreach (var variable in list)
+                {
+                    Console.WriteLine($@"[{i}] {variable.Name}");
+                    i++;
+                }
+
+                Console.WriteLine(@"[Q] Exit program");
+                Console.WriteLine(@"-------------------------");
+
+                var res = Console.ReadLine();
+
+                if (res == "q")
+                {
+                    Environment.Exit(0);
+                }
+
+                //TODO Finish
+            }
         }
 
         public void DeleteStock(object sender, RoutedEventArgs e)
