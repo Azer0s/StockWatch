@@ -134,7 +134,7 @@ namespace StockWatch
 
                 var res = Console.ReadLine();
 
-                if (res == "q")
+                if (res.ToLower() == "q")
                 {
                     Environment.Exit(0);
                 }
@@ -172,11 +172,19 @@ namespace StockWatch
                         Console.WriteLine(list[n-1].Name);
                         Console.WriteLine(@"-------------------------");
                         Console.WriteLine(@"[0] Open live-feed");
-                        Console.WriteLine(@"[1] Open UI");
-                        Console.WriteLine(@"[2] Settings");
+                        Console.WriteLine(@"[1] Settings");
                         Console.WriteLine(@"[B] Back");
                         Console.WriteLine(@"-------------------------");
-                        Console.ReadKey();
+                        var stockRes = Console.ReadLine();
+
+                        if (stockRes.ToLower() == "b")
+                        {
+                            continue;
+                        }
+                        if (stockRes == "1")
+                        {
+                            continue;
+                        }
                         //TODO Options
                     }
                     catch (Exception)
