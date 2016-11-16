@@ -26,6 +26,7 @@ namespace StockWatch
                 {
                     if (args[1] == "-c")
                     {
+                        ConsoleManager.Show();
                         ConsoleModeStart();
                         return;
                     }
@@ -112,9 +113,11 @@ namespace StockWatch
         {
             var list = JsonConvert.DeserializeObject<List<Configuration>>(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json"));
             this.Close();
+            Console.Title = @"StockWatch Console Mode";
 
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine(@"StockWatch - Console Mode");
                 Console.WriteLine(@"-------------------------");
                 Console.WriteLine(@"[0] Add new stock");
@@ -136,7 +139,52 @@ namespace StockWatch
                     Environment.Exit(0);
                 }
 
-                //TODO Finish
+                if (res == "0")
+                {
+                    Console.WriteLine(@"-------------------------");
+                    Console.WriteLine(@"Stock name:");
+                    var name = Console.ReadLine();
+                    Console.WriteLine();
+                    Console.WriteLine(@"Stock ticker:");
+                    var ticker = Console.ReadLine();
+
+                    list.Add(new Configuration(name, ticker, "1d", 0, false));
+                    try
+                    {
+                        File.WriteAllText(
+                            Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) +
+                            "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(list));
+                    }
+                    catch
+                    {
+                        // ignored
+                    }
+                    Console.WriteLine(@"-------------------------");
+                }
+
+                int n;
+                if (int.TryParse(res, out n))
+                {
+                    try
+                    {
+                        Console.Clear();
+                        Console.WriteLine();
+                        Console.WriteLine(list[n-1].Name);
+                        Console.WriteLine(@"-------------------------");
+                        Console.WriteLine(@"[0] Open live-feed");
+                        Console.WriteLine(@"[1] Open UI");
+                        Console.WriteLine(@"[2] Settings");
+                        Console.WriteLine(@"[B] Back");
+                        Console.WriteLine(@"-------------------------");
+                        Console.ReadKey();
+                        //TODO Options
+                    }
+                    catch (Exception)
+                    {
+                        Console.WriteLine(@"Invalid input!");
+                    }
+                }
+                
             }
         }
 
