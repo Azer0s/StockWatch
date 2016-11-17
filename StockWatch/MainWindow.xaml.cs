@@ -165,6 +165,7 @@ namespace StockWatch
                 int n;
                 if (int.TryParse(res, out n))
                 {
+                    StockConsole:
                     try
                     {
                         Console.Clear();
@@ -172,7 +173,8 @@ namespace StockWatch
                         Console.WriteLine(list[n-1].Name);
                         Console.WriteLine(@"-------------------------");
                         Console.WriteLine(@"[0] Open live-feed");
-                        Console.WriteLine(@"[1] Settings");
+                        Console.WriteLine(@"[1] Open UI");
+                        Console.WriteLine(@"[2] Settings");
                         Console.WriteLine(@"[B] Back");
                         Console.WriteLine(@"-------------------------");
                         var stockRes = Console.ReadLine();
@@ -181,11 +183,21 @@ namespace StockWatch
                         {
                             continue;
                         }
-                        if (stockRes == "1")
+                        switch (stockRes)
                         {
-                            continue;
+                            case "0":
+                                break;
+                            case "1":
+                                continue;
+                            case "2":
+                                //TODO Options
+                                break;
+                            default:
+                                Console.WriteLine(@"Invalid input!");
+                                Console.ReadKey();
+                                Console.Clear();
+                                goto StockConsole;
                         }
-                        //TODO Options
                     }
                     catch (Exception)
                     {
