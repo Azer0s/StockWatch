@@ -59,11 +59,11 @@ namespace StockWatch
                         {
                             Application.Current.Dispatcher.Invoke(() => {
                                 Application.Current.MainWindow = this;
-                                Application.Current.MainWindow.Height += 1;
+                                Application.Current.MainWindow.Height -= 1;
                             });
                             GetStockDataDay();
                             Application.Current.Dispatcher.Invoke(() => {
-                                Application.Current.MainWindow.Height -= 1;
+                                Application.Current.MainWindow.Height += 1;
                             });
                             
                             Thread.Sleep(15000);

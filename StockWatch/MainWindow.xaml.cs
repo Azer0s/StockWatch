@@ -188,9 +188,46 @@ namespace StockWatch
                             case "0":
                                 break;
                             case "1":
+                                var s = new Stock(list[n-1].Name,"1d",0,false,false);
+                                Console.WriteLine(@"Press q to quit");
+
+                                var shouldquit = false;
+                                while (!shouldquit)
+                                {
+                                    var dataArray = s.DownloaddData().series;
+                                    var lastData = dataArray[dataArray.Count - 1];
+                                    Console.WriteLine(Stock.UnixTimeStampToDateTime(lastData.Timestamp) + " High: " + lastData.high + " | Low: " + lastData.low);
+                                }
                                 continue;
                             case "2":
-                                //TODO Options
+                                while (true)
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine(@"-------------------------");
+                                    Console.WriteLine(@"[0] Name");
+                                    Console.WriteLine(@"[1] Stock ticker");
+                                    Console.WriteLine(@"[2] Time");
+                                    Console.WriteLine(@"[3] Precision");
+                                    Console.WriteLine(@"[4] Animations");
+                                    Console.WriteLine(@"[B] Go back");
+                                    Console.WriteLine(@"-------------------------");
+
+                                    var result = Console.ReadLine();
+
+                                    if (result.ToLower() == "b")
+                                    {
+                                        break;
+                                    }
+
+                                    if (result == "0")
+                                    {
+                                        Console.WriteLine();
+                                        Console.WriteLine(@"Enter new name:");
+                                        var newName = Console.ReadLine();
+                                        _stockList[_stockList.IndexOf(list[n - 1])].Name = newName;
+                                        File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                                    }
+                                }  
                                 break;
                             default:
                                 Console.WriteLine(@"Invalid input!");
