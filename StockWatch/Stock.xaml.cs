@@ -27,6 +27,7 @@ namespace StockWatch
         public List<string> Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
         private bool IsSet { get; set; }
+        private bool ShouldRun { get; set; }
 
         public Stock(string stock, string timeSpan, int prec,bool animations, bool snapshot)
         {
@@ -37,6 +38,12 @@ namespace StockWatch
             Precision = prec;
             YFormatter = value => Math.Round(value,2) + "$";
             Labels = new List<string>();
+            ShouldRun = true;
+
+            this.Closing += delegate
+            {
+                ShouldRun = false;
+            };
 
             Chart.DisableAnimations = !animations;
 
@@ -55,15 +62,24 @@ namespace StockWatch
                 {
                     if (timeSpan == "1d")
                     {
-                        while (true)
+                        while (ShouldRun)
                         {
-                            Application.Current.Dispatcher.Invoke(() => {
-                                Application.Current.MainWindow = this;
-                                Application.Current.MainWindow.Height -= 1;
-                            });
                             GetStockDataDay();
                             Application.Current.Dispatcher.Invoke(() => {
-                                Application.Current.MainWindow.Height += 1;
+                                Application.Current.MainWindow = this;
+                                if (WindowState == WindowState.Maximized)
+                                {
+                                    var width = Application.Current.MainWindow.Width;
+                                    WindowState = WindowState.Normal;
+                                    Application.Current.MainWindow.Width = width-1;
+                                    WindowState = WindowState.Maximized;
+                                    Application.Current.MainWindow.Width = width;
+                                }
+                                else
+                                {
+                                    Application.Current.MainWindow.Height -= 1;
+                                    Application.Current.MainWindow.Height += 1;
+                                }
                             });
                             
                             Thread.Sleep(15000);

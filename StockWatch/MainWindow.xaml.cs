@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
 using System.Runtime.Remoting.Contexts;
+using System.Threading;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
@@ -117,6 +118,7 @@ namespace StockWatch
 
             while (true)
             {
+                MainView:
                 Console.Clear();
                 Console.WriteLine(@"StockWatch - Console Mode");
                 Console.WriteLine(@"-------------------------");
@@ -177,29 +179,54 @@ namespace StockWatch
                         Console.WriteLine(@"[2] Settings");
                         Console.WriteLine(@"[B] Back");
                         Console.WriteLine(@"-------------------------");
-                        var stockRes = Console.ReadLine();
+                        var stockRes = Console.ReadKey();
+                        Console.Write("\b");
 
-                        if (stockRes.ToLower() == "b")
+                        //TODO
+
+                        if (stockRes.Key == ConsoleKey.B)
                         {
                             continue;
                         }
-                        switch (stockRes)
+                        switch (stockRes.Key)
                         {
-                            case "0":
+                            case ConsoleKey.D0:
+                            case ConsoleKey.NumPad0:
                                 break;
-                            case "1":
+                            case ConsoleKey.D1:
+                            case ConsoleKey.NumPad1:
                                 var s = new Stock(list[n-1].Name,"1d",0,false,false);
                                 Console.WriteLine(@"Press q to quit");
 
                                 var shouldquit = false;
                                 while (!shouldquit)
                                 {
+                                    try
+                                    {
+                                        if (Reader.ReadKey(500).Key == ConsoleKey.Q)
+                                        {
+                                            shouldquit = true;
+                                        }
+                                    }
+                                    catch (Exception)
+                                    {
+                                        //ignored
+                                    }
                                     var dataArray = s.DownloaddData().series;
+
+                                    if (dataArray == null)
+                                    {
+                                        Console.WriteLine(@"No data available!");
+                                        Console.ReadKey();
+                                        goto MainView;
+                                    }
+
                                     var lastData = dataArray[dataArray.Count - 1];
-                                    Console.WriteLine(Stock.UnixTimeStampToDateTime(lastData.Timestamp) + " High: " + lastData.high + " | Low: " + lastData.low);
+                                    Console.WriteLine(Stock.UnixTimeStampToDateTime(lastData.Timestamp) + @" | High: " + lastData.high + @" | Low: " + lastData.low);
                                 }
                                 continue;
-                            case "2":
+                            case ConsoleKey.D2:
+                            case ConsoleKey.NumPad2:
                                 while (true)
                                 {
                                     Console.Clear();
@@ -212,14 +239,14 @@ namespace StockWatch
                                     Console.WriteLine(@"[B] Go back");
                                     Console.WriteLine(@"-------------------------");
 
-                                    var result = Console.ReadLine();
+                                    var result = Console.ReadKey();
 
-                                    if (result.ToLower() == "b")
+                                    if (result.Key == ConsoleKey.B)
                                     {
                                         break;
                                     }
 
-                                    if (result == "0")
+                                    if (result.Key == ConsoleKey.NumPad0 || result.Key == ConsoleKey.D0)
                                     {
                                         Console.WriteLine();
                                         Console.WriteLine(@"Enter new name:");
@@ -227,6 +254,8 @@ namespace StockWatch
                                         _stockList[_stockList.IndexOf(list[n - 1])].Name = newName;
                                         File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
                                     }
+
+                                    //TODO
                                 }  
                                 break;
                             default:
@@ -239,6 +268,9 @@ namespace StockWatch
                     catch (Exception)
                     {
                         Console.WriteLine(@"Invalid input!");
+                        Console.ReadKey();
+                        Console.Clear();
+                        goto StockConsole;
                     }
                 }
                 
@@ -273,8 +305,15 @@ namespace StockWatch
             foreach (var variable in _stockList)
             {
                 if (variable.Name != stock) continue;
-                var s = new Stock(variable.Stock,variable.Time,variable.Precision,variable.Animations,false);
-                s.Show();
+                try
+                {
+                    var s = new Stock(variable.Stock, variable.Time, variable.Precision, variable.Animations, false);
+                    s.Show();
+                }
+                catch (Exception)
+                {
+                    //ignored
+                }      
                 break;
             }
         }
