@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockWatch", "StockWatch\StockWatch.csproj", "{D020348A-24B4-452E-BD93-361FAC94C4F5}"
 EndProject
 Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Setup", "Setup\Setup.isproj", "{467F6032-8DD3-401A-B09B-CA3FCBF43A21}"
-	ProjectSection(ProjectDependencies) = postProject
-		{D020348A-24B4-452E-BD93-361FAC94C4F5} = {D020348A-24B4-452E-BD93-361FAC94C4F5}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

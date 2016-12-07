@@ -340,7 +340,12 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
-		<row><td>StockWatch.Primary_output</td><td>{6EF9783B-2655-4540-90BF-D6B55A05B780}</td><td>INSTALLDIR</td><td>2</td><td/><td>stockwatch.primary_output</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td>{9055B18F-5FB2-4D6E-904E-A277DCDBAD85}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>LiveCharts.Wpf.dll</td><td>{92F57B62-CC84-4A19-B29F-91162FC0A1F7}</td><td>INSTALLDIR</td><td>2</td><td/><td>livecharts.wpf.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>LiveCharts.dll</td><td>{A332C47D-086D-443E-9A11-8A91E9134A71}</td><td>INSTALLDIR</td><td>2</td><td/><td>livecharts.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Newtonsoft.Json.dll</td><td>{D0880C0A-0A02-45E2-A265-31BAD0AB3566}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>StockWatch.exe</td><td>{EE51A8F2-B521-4C29-955C-EDB331A88784}</td><td>INSTALLDIR</td><td>2</td><td/><td>stockwatch.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>System.Data.SqlServerCe.dll</td><td>{0C52578C-B3F3-4235-99E5-D03A74760338}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.data.sqlserverce.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1050,7 +1055,12 @@
 	<table name="CreateFolder">
 		<col key="yes" def="s72">Directory_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>INSTALLDIR</td><td>StockWatch.Primary_output</td></row>
+		<row><td>INSTALLDIR</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>INSTALLDIR</td><td>LiveCharts.Wpf.dll</td></row>
+		<row><td>INSTALLDIR</td><td>LiveCharts.dll</td></row>
+		<row><td>INSTALLDIR</td><td>Newtonsoft.Json.dll</td></row>
+		<row><td>INSTALLDIR</td><td>StockWatch.exe</td></row>
+		<row><td>INSTALLDIR</td><td>System.Data.SqlServerCe.dll</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1843,7 +1853,7 @@
 		<col def="S255">ProgId_</col>
 		<col def="S64">MIME_</col>
 		<col def="s38">Feature_</col>
-		<row><td>swsnapshot</td><td>StockWatch.Primary_output</td><td/><td/><td>AlwaysInstall</td></row>
+		<row><td>swsnapshot</td><td>StockWatch.exe</td><td/><td/><td>AlwaysInstall</td></row>
 	</table>
 
 	<table name="Feature">
@@ -1865,7 +1875,12 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
-		<row><td>AlwaysInstall</td><td>StockWatch.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>LiveCharts.Wpf.dll</td></row>
+		<row><td>AlwaysInstall</td><td>LiveCharts.dll</td></row>
+		<row><td>AlwaysInstall</td><td>Newtonsoft.Json.dll</td></row>
+		<row><td>AlwaysInstall</td><td>StockWatch.exe</td></row>
+		<row><td>AlwaysInstall</td><td>System.Data.SqlServerCe.dll</td></row>
 	</table>
 
 	<table name="File">
@@ -1880,7 +1895,15 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>stockwatch.primary_output</td><td>StockWatch.Primary_output</td><td>StockWatch.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;StockWatch&gt;|Built</td><td>3</td><td/></row>
+		<row><td>consolemode.cmd</td><td>ISX_DEFAULTCOMPONENT</td><td>CONSOL~1.CMD|Consolemode.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\Consolemode.cmd</td><td>1</td><td/></row>
+		<row><td>livecharts.dll</td><td>LiveCharts.dll</td><td>LIVECH~1.DLL|LiveCharts.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\LiveCharts.dll</td><td>1</td><td/></row>
+		<row><td>livecharts.wpf.dll</td><td>LiveCharts.Wpf.dll</td><td>LIVECH~1.DLL|LiveCharts.Wpf.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\LiveCharts.Wpf.dll</td><td>1</td><td/></row>
+		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\Newtonsoft.Json.dll</td><td>1</td><td/></row>
+		<row><td>newtonsoft.json.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>NEWTON~1.XML|Newtonsoft.Json.xml</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\Newtonsoft.Json.xml</td><td>1</td><td/></row>
+		<row><td>stockwatch.exe</td><td>StockWatch.exe</td><td>STOCKW~1.EXE|StockWatch.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe</td><td>1</td><td/></row>
+		<row><td>stockwatch.exe.config</td><td>ISX_DEFAULTCOMPONENT</td><td>STOCKW~1.CON|StockWatch.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe.config</td><td>1</td><td/></row>
+		<row><td>stockwatch.pdb</td><td>ISX_DEFAULTCOMPONENT</td><td>STOCKW~1.PDB|StockWatch.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.pdb</td><td>1</td><td/></row>
+		<row><td>system.data.sqlserverce.dll</td><td>System.Data.SqlServerCe.dll</td><td>SYSTEM~1.DLL|System.Data.SqlServerCe.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\System.Data.SqlServerCe.dll</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2022,7 +2045,12 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
-		<row><td>StockWatch.Primary_output</td><td/><td/><td>_E9315561_068E_4DDB_B453_A812DB799E2C_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_19B4994F_B009_401A_B3A7_95BCA2655060_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>LiveCharts.Wpf.dll</td><td/><td/><td>_C7721560_3BD3_4648_A707_64B4E6898B46_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>LiveCharts.dll</td><td/><td/><td>_CC93C168_8DE8_40AE_8D4B_4EF89CC3F532_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_068E124B_6CD0_44C3_9765_7C12CD9DEB46_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>StockWatch.exe</td><td/><td/><td>_00D2F042_084D_4822_8A72_AF4EC464FEC1_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>System.Data.SqlServerCe.dll</td><td/><td/><td>_432B9ECC_8AAA_4DA7_A378_81B69EB49AAD_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2611,7 +2639,7 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>2107921621</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>1042573329</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
@@ -3424,6 +3452,8 @@
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>2107948819</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>Launch StockWatch</td><td>0</td><td/><td>1042595921</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>1042551025</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>2107932371</td></row>
@@ -3712,9 +3742,10 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.StockWatch.com</td><td>0</td><td/><td>2107921621</td></row>
-		<row><td>ID_STRING2</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>2107921621</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.StockWatch.com</td><td>0</td><td/><td>1042573329</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>1042573329</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>2107950867</td></row>
+		<row><td>ID_STRING4</td><td>1033</td><td>Launch StockWatch</td><td>0</td><td/><td>1042554993</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>2107932371</td></row>
 	</table>
 
@@ -3829,6 +3860,7 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
+		<row><td>StockWatch.exe_893F8EBE7D9F4EFBA93A5D1DB26F4368.exe</td><td/><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -4306,8 +4338,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>IS_SQLSERVER_USERNAME</td><td>sa</td><td/></row>
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
-		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{6EF9783B-2655-4540-90BF-D6B55A05B780}</td><td/></row>
-		<row><td>LAUNCHPROGRAMFILEKEY</td><td>stockwatch.primary_output</td><td/></row>
+		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{EE51A8F2-B521-4C29-955C-EDB331A88784}</td><td/></row>
+		<row><td>LAUNCHPROGRAMFILEKEY</td><td>stockwatch.exe</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>PIDKEY</td><td/><td/></row>
@@ -4335,7 +4367,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKAPPPOOLS</td><td>##IDS_PROGMSG_IIS_ROLLBACKAPPPOOLS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
-		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]StockWatch.Primary output</td><td/></row>
+		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]StockWatch.exe</td><td/></row>
 		<row><td>ProductCode</td><td>{F0EBD172-1611-4F0B-9FC2-8B9332E21FCC}</td><td/></row>
 		<row><td>ProductName</td><td>StockWatch</td><td/></row>
 		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
@@ -4414,9 +4446,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
-		<row><td>FileKey1</td><td>StockWatch.Primary_output</td><td/><td>simule_1_simulevski</td><td>2</td></row>
-		<row><td>FileKey2</td><td>StockWatch.Primary_output</td><td/><td>stockw_1_stockwatch</td><td>2</td></row>
-		<row><td>_Built</td><td>StockWatch.Primary_output</td><td/><td>stockw_1_stockwatch</td><td>2</td></row>
+		<row><td>StockWatch.exe</td><td>StockWatch.exe</td><td/><td>stockw_1_stockwatch</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4502,8 +4532,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>_Built</td><td>stockw_1_stockwatch</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>StockWatch.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
-		<row><td>_Built1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>StockWatch.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>StockWatch.exe</td><td>stockw_1_stockwatch</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>StockWatch.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>StockWatch.exe_893F8EBE7D9F4EFBA93A5D1DB26F4368.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

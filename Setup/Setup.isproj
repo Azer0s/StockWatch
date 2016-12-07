@@ -28,10 +28,5 @@
 		</TaggedOutputs> -->
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2015Limited\InstallShield.targets"/>
-	<ItemGroup>
-		<ProjectReference Include="..\StockWatch\StockWatch.csproj">
-			<Name>StockWatch</Name>
-			<Project>{D020348A-24B4-452E-BD93-361FAC94C4F5}</Project>
-		</ProjectReference>
-	</ItemGroup>
+	<ItemGroup/>
 </Project>
