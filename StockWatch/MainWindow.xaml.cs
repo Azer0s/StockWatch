@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
-using System.Runtime.Remoting.Contexts;
-using System.Threading;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
@@ -113,7 +111,7 @@ namespace StockWatch
         private void ConsoleModeStart()
         {
             var list = JsonConvert.DeserializeObject<List<Configuration>>(File.ReadAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json"));
-            this.Close();
+            Close();
             Console.Title = @"StockWatch Console Mode";
 
             while (true)
@@ -181,8 +179,6 @@ namespace StockWatch
                         var stockRes = Console.ReadKey();
                         Console.Write("\b");
 
-                        //TODO
-
                         switch (stockRes.Key)
                         {
                             case ConsoleKey.B:
@@ -190,11 +186,12 @@ namespace StockWatch
 
                             case ConsoleKey.D0:
                             case ConsoleKey.NumPad0:
-                                var s = new Stock(list[n-1].Name,"1d",0,false,false);
+                                var s = new Stock(list[n-1].Stock,"1d",0,false,false);
                                 Console.WriteLine(@"Press q to quit");
                                 Console.WriteLine("\n");
 
                                 var shouldquit = false;
+                                DateTime lastdate = new DateTime();
                                 while (!shouldquit)
                                 {
                                     try
@@ -220,12 +217,18 @@ namespace StockWatch
                                         goto MainView;
                                     }
 
-                                    var lastData = dataArray[dataArray.Count - 1];
-                                    Console.SetCursorPosition(0, Console.CursorTop - 1);
-                                    ClearCurrentConsoleLine();
-                                    Console.WriteLine(Stock.UnixTimeStampToDateTime(lastData.Timestamp) + @" | High: " + lastData.high + @" | Low: " + lastData.low);
+                                    var lastData = dataArray[dataArray.Count - 1];                                    
+                                    var date = Stock.UnixTimeStampToDateTime(lastData.Timestamp);
+
+                                    if (lastdate < date)
+                                    {
+                                        Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                        ClearCurrentConsoleLine();
+                                        Console.WriteLine(date + @" | High: " + lastData.high + @" | Low: " + lastData.low);
+                                        lastdate = date;
+                                    }
                                 }
-                                continue;
+                                goto StockConsole;
                             case ConsoleKey.D1:
                             case ConsoleKey.NumPad1:
                                 while (true)
