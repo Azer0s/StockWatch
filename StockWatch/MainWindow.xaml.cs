@@ -250,7 +250,7 @@ namespace StockWatch
                                             Console.WriteLine(@"Enter new name:");
                                             var newName = Console.ReadLine();
                                             list[list.IndexOf(list[n - 1])].Name = newName;
-                                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(list));
                                             break;
                                         case ConsoleKey.NumPad1:
                                         case ConsoleKey.D1:
@@ -258,7 +258,7 @@ namespace StockWatch
                                             Console.WriteLine(@"Enter new ticker:");
                                             var newTicker = Console.ReadLine();
                                             list[list.IndexOf(list[n - 1])].Stock = newTicker;
-                                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(list));
                                             break;
                                         case ConsoleKey.NumPad2:
                                         case ConsoleKey.D2:
@@ -266,7 +266,7 @@ namespace StockWatch
                                             Console.WriteLine(@"Enter new timespand:");
                                             var newTime = Console.ReadLine();
                                             list[list.IndexOf(list[n - 1])].Time = newTime;
-                                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(list));
                                             break;
                                     }
                                 }  
