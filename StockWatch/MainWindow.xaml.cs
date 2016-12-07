@@ -175,8 +175,7 @@ namespace StockWatch
                         Console.WriteLine(list[n-1].Name);
                         Console.WriteLine(@"-------------------------");
                         Console.WriteLine(@"[0] Open live-feed");
-                        Console.WriteLine(@"[1] Open UI");
-                        Console.WriteLine(@"[2] Settings");
+                        Console.WriteLine(@"[1] Settings");
                         Console.WriteLine(@"[B] Back");
                         Console.WriteLine(@"-------------------------");
                         var stockRes = Console.ReadKey();
@@ -184,19 +183,16 @@ namespace StockWatch
 
                         //TODO
 
-                        if (stockRes.Key == ConsoleKey.B)
-                        {
-                            continue;
-                        }
                         switch (stockRes.Key)
                         {
+                            case ConsoleKey.B:
+                                goto MainView;
+
                             case ConsoleKey.D0:
                             case ConsoleKey.NumPad0:
-                                break;
-                            case ConsoleKey.D1:
-                            case ConsoleKey.NumPad1:
                                 var s = new Stock(list[n-1].Name,"1d",0,false,false);
                                 Console.WriteLine(@"Press q to quit");
+                                Console.WriteLine("\n");
 
                                 var shouldquit = false;
                                 while (!shouldquit)
@@ -212,21 +208,26 @@ namespace StockWatch
                                     {
                                         //ignored
                                     }
+
                                     var dataArray = s.DownloaddData().series;
 
                                     if (dataArray == null)
                                     {
+                                        Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                        ClearCurrentConsoleLine();
                                         Console.WriteLine(@"No data available!");
                                         Console.ReadKey();
                                         goto MainView;
                                     }
 
                                     var lastData = dataArray[dataArray.Count - 1];
+                                    Console.SetCursorPosition(0, Console.CursorTop - 1);
+                                    ClearCurrentConsoleLine();
                                     Console.WriteLine(Stock.UnixTimeStampToDateTime(lastData.Timestamp) + @" | High: " + lastData.high + @" | Low: " + lastData.low);
                                 }
                                 continue;
-                            case ConsoleKey.D2:
-                            case ConsoleKey.NumPad2:
+                            case ConsoleKey.D1:
+                            case ConsoleKey.NumPad1:
                                 while (true)
                                 {
                                     Console.Clear();
@@ -234,28 +235,40 @@ namespace StockWatch
                                     Console.WriteLine(@"[0] Name");
                                     Console.WriteLine(@"[1] Stock ticker");
                                     Console.WriteLine(@"[2] Time");
-                                    Console.WriteLine(@"[3] Precision");
-                                    Console.WriteLine(@"[4] Animations");
                                     Console.WriteLine(@"[B] Go back");
                                     Console.WriteLine(@"-------------------------");
 
                                     var result = Console.ReadKey();
 
-                                    if (result.Key == ConsoleKey.B)
+                                    switch (result.Key)
                                     {
-                                        break;
+                                        case ConsoleKey.B:
+                                            goto StockConsole;
+                                        case ConsoleKey.NumPad0:
+                                        case ConsoleKey.D0:
+                                            Console.WriteLine();
+                                            Console.WriteLine(@"Enter new name:");
+                                            var newName = Console.ReadLine();
+                                            list[list.IndexOf(list[n - 1])].Name = newName;
+                                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                                            break;
+                                        case ConsoleKey.NumPad1:
+                                        case ConsoleKey.D1:
+                                            Console.WriteLine();
+                                            Console.WriteLine(@"Enter new ticker:");
+                                            var newTicker = Console.ReadLine();
+                                            list[list.IndexOf(list[n - 1])].Stock = newTicker;
+                                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                                            break;
+                                        case ConsoleKey.NumPad2:
+                                        case ConsoleKey.D2:
+                                            Console.WriteLine();
+                                            Console.WriteLine(@"Enter new timespand:");
+                                            var newTime = Console.ReadLine();
+                                            list[list.IndexOf(list[n - 1])].Time = newTime;
+                                            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
+                                            break;
                                     }
-
-                                    if (result.Key == ConsoleKey.NumPad0 || result.Key == ConsoleKey.D0)
-                                    {
-                                        Console.WriteLine();
-                                        Console.WriteLine(@"Enter new name:");
-                                        var newName = Console.ReadLine();
-                                        _stockList[_stockList.IndexOf(list[n - 1])].Name = newName;
-                                        File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\.StockWatch\\stocks.json", JsonConvert.SerializeObject(_stockList));
-                                    }
-
-                                    //TODO
                                 }  
                                 break;
                             default:
@@ -372,6 +385,14 @@ namespace StockWatch
                 break;
             }
             
+        }
+
+        public static void ClearCurrentConsoleLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
         }
     }
 }
