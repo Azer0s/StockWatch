@@ -141,7 +141,6 @@ namespace StockWatch
 
                 if (res == "0")
                 {
-                    Console.WriteLine(@"-------------------------");
                     Console.WriteLine(@"Stock name:");
                     var name = Console.ReadLine();
                     Console.WriteLine();
@@ -159,7 +158,7 @@ namespace StockWatch
                     {
                         // ignored
                     }
-                    Console.WriteLine(@"-------------------------");
+                    continue;
                 }
 
                 int n;
