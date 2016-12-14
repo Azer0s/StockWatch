@@ -341,11 +341,12 @@
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td>{9055B18F-5FB2-4D6E-904E-A277DCDBAD85}</td><td>INSTALLDIR</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>LiveCharts.Wpf.dll</td><td>{92F57B62-CC84-4A19-B29F-91162FC0A1F7}</td><td>INSTALLDIR</td><td>2</td><td/><td>livecharts.wpf.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>LiveCharts.dll</td><td>{A332C47D-086D-443E-9A11-8A91E9134A71}</td><td>INSTALLDIR</td><td>2</td><td/><td>livecharts.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>Newtonsoft.Json.dll</td><td>{D0880C0A-0A02-45E2-A265-31BAD0AB3566}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>StockWatch.exe</td><td>{EE51A8F2-B521-4C29-955C-EDB331A88784}</td><td>INSTALLDIR</td><td>2</td><td/><td>stockwatch.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
-		<row><td>System.Data.SqlServerCe.dll</td><td>{0C52578C-B3F3-4235-99E5-D03A74760338}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.data.sqlserverce.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>LiveCharts.Wpf.dll</td><td>{39BA4B2F-56F3-481A-B4F6-99E3A89AECBD}</td><td>INSTALLDIR</td><td>2</td><td/><td>livecharts.wpf.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>LiveCharts.dll</td><td>{B3D49F97-2E4C-4AE1-A4CE-A3B9ACE24A21}</td><td>INSTALLDIR</td><td>2</td><td/><td>livecharts.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>Newtonsoft.Json.dll</td><td>{FD93F259-D362-4E32-AD54-12CD326C57FB}</td><td>INSTALLDIR</td><td>2</td><td/><td>newtonsoft.json.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>StockWatch.exe</td><td>{2C923C16-CAC1-4C5A-9DAB-18BB6ADC0F99}</td><td>INSTALLDIR</td><td>2</td><td/><td>stockwatch.exe</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>System.Data.SqlServerCe.dll</td><td>{F89C8742-879A-4309-A6CA-1178281F3455}</td><td>INSTALLDIR</td><td>2</td><td/><td>system.data.sqlserverce.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>WPFToolkit.dll</td><td>{24F50DAA-E316-4E38-A265-D6F18DA81217}</td><td>INSTALLDIR</td><td>2</td><td/><td>wpftoolkit.dll</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -1061,6 +1062,7 @@
 		<row><td>INSTALLDIR</td><td>Newtonsoft.Json.dll</td></row>
 		<row><td>INSTALLDIR</td><td>StockWatch.exe</td></row>
 		<row><td>INSTALLDIR</td><td>System.Data.SqlServerCe.dll</td></row>
+		<row><td>INSTALLDIR</td><td>WPFToolkit.dll</td></row>
 	</table>
 
 	<table name="CustomAction">
@@ -1881,6 +1883,7 @@
 		<row><td>AlwaysInstall</td><td>Newtonsoft.Json.dll</td></row>
 		<row><td>AlwaysInstall</td><td>StockWatch.exe</td></row>
 		<row><td>AlwaysInstall</td><td>System.Data.SqlServerCe.dll</td></row>
+		<row><td>AlwaysInstall</td><td>WPFToolkit.dll</td></row>
 	</table>
 
 	<table name="File">
@@ -1895,15 +1898,16 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
-		<row><td>consolemode.cmd</td><td>ISX_DEFAULTCOMPONENT</td><td>CONSOL~1.CMD|Consolemode.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\Consolemode.cmd</td><td>1</td><td/></row>
-		<row><td>livecharts.dll</td><td>LiveCharts.dll</td><td>LIVECH~1.DLL|LiveCharts.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\LiveCharts.dll</td><td>1</td><td/></row>
-		<row><td>livecharts.wpf.dll</td><td>LiveCharts.Wpf.dll</td><td>LIVECH~1.DLL|LiveCharts.Wpf.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\LiveCharts.Wpf.dll</td><td>1</td><td/></row>
-		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\Newtonsoft.Json.dll</td><td>1</td><td/></row>
-		<row><td>newtonsoft.json.xml</td><td>ISX_DEFAULTCOMPONENT</td><td>NEWTON~1.XML|Newtonsoft.Json.xml</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\Newtonsoft.Json.xml</td><td>1</td><td/></row>
-		<row><td>stockwatch.exe</td><td>StockWatch.exe</td><td>STOCKW~1.EXE|StockWatch.exe</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe</td><td>1</td><td/></row>
-		<row><td>stockwatch.exe.config</td><td>ISX_DEFAULTCOMPONENT</td><td>STOCKW~1.CON|StockWatch.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe.config</td><td>1</td><td/></row>
-		<row><td>stockwatch.pdb</td><td>ISX_DEFAULTCOMPONENT</td><td>STOCKW~1.PDB|StockWatch.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.pdb</td><td>1</td><td/></row>
-		<row><td>system.data.sqlserverce.dll</td><td>System.Data.SqlServerCe.dll</td><td>SYSTEM~1.DLL|System.Data.SqlServerCe.dll</td><td>0</td><td/><td/><td/><td>1</td><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\System.Data.SqlServerCe.dll</td><td>1</td><td/></row>
+		<row><td>consolemode.cmd</td><td>ISX_DEFAULTCOMPONENT</td><td>CONSOL~1.CMD|Consolemode.cmd</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\Consolemode.cmd</td><td>1</td><td/></row>
+		<row><td>livecharts.dll</td><td>LiveCharts.dll</td><td>LIVECH~1.DLL|LiveCharts.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\LiveCharts.dll</td><td>1</td><td/></row>
+		<row><td>livecharts.wpf.dll</td><td>LiveCharts.Wpf.dll</td><td>LIVECH~1.DLL|LiveCharts.Wpf.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\LiveCharts.Wpf.dll</td><td>1</td><td/></row>
+		<row><td>newtonsoft.json.dll</td><td>Newtonsoft.Json.dll</td><td>NEWTON~1.DLL|Newtonsoft.Json.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\Newtonsoft.Json.dll</td><td>1</td><td/></row>
+		<row><td>stockwatch.exe</td><td>StockWatch.exe</td><td>STOCKW~1.EXE|StockWatch.exe</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe</td><td>1</td><td/></row>
+		<row><td>stockwatch.exe.config</td><td>ISX_DEFAULTCOMPONENT</td><td>STOCKW~1.CON|StockWatch.exe.config</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe.config</td><td>1</td><td/></row>
+		<row><td>stockwatch.pdb</td><td>ISX_DEFAULTCOMPONENT</td><td>STOCKW~1.PDB|StockWatch.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.pdb</td><td>1</td><td/></row>
+		<row><td>system.data.sqlserverce.dll</td><td>System.Data.SqlServerCe.dll</td><td>SYSTEM~1.DLL|System.Data.SqlServerCe.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\System.Data.SqlServerCe.dll</td><td>1</td><td/></row>
+		<row><td>wpftoolkit.dll</td><td>WPFToolkit.dll</td><td>WPFTOO~1.DLL|WPFToolkit.dll</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\WPFToolkit.dll</td><td>1</td><td/></row>
+		<row><td>wpftoolkit.pdb</td><td>ISX_DEFAULTCOMPONENT</td><td>WPFTOO~1.PDB|WPFToolkit.pdb</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\WPFToolkit.pdb</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -2046,11 +2050,12 @@
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
 		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_19B4994F_B009_401A_B3A7_95BCA2655060_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>LiveCharts.Wpf.dll</td><td/><td/><td>_C7721560_3BD3_4648_A707_64B4E6898B46_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>LiveCharts.dll</td><td/><td/><td>_CC93C168_8DE8_40AE_8D4B_4EF89CC3F532_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_068E124B_6CD0_44C3_9765_7C12CD9DEB46_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>StockWatch.exe</td><td/><td/><td>_00D2F042_084D_4822_8A72_AF4EC464FEC1_FILTER</td><td/><td/><td/><td/></row>
-		<row><td>System.Data.SqlServerCe.dll</td><td/><td/><td>_432B9ECC_8AAA_4DA7_A378_81B69EB49AAD_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>LiveCharts.Wpf.dll</td><td/><td/><td>_D6307D40_7B1A_491A_81DF_B9CF0ACFB2C9_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>LiveCharts.dll</td><td/><td/><td>_F83E1B73_B959_4ED6_8E34_4A4920402621_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>Newtonsoft.Json.dll</td><td/><td/><td>_74A37356_70FC_4F4F_BAE9_3EAE9168A96E_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>StockWatch.exe</td><td/><td/><td>_4F44CDB5_1916_4A78_BC16_7017DE9EB607_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>System.Data.SqlServerCe.dll</td><td/><td/><td>_658EF28C_E726_4391_9EB7_EC9809BD74E3_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>WPFToolkit.dll</td><td/><td/><td>_86FABB69_7C60_442C_A93A_7E85A699B313_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2396,6 +2401,7 @@
 		<row><td>DVD-18</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>Default</td><td>3</td><td>1033</td><td>0</td><td>2</td><td>Intel</td><td/><td>1033</td><td>0</td><td>15.83</td><td>1</td><td>2048</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>75805</td><td/><td/><td/><td>3</td></row>
 		<row><td>DVD-5</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>Default</td><td>3</td><td>1033</td><td>0</td><td>2</td><td>Intel</td><td/><td>1033</td><td>0</td><td>4.38</td><td>1</td><td>2048</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>75805</td><td/><td/><td/><td>3</td></row>
 		<row><td>DVD-9</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>Default</td><td>3</td><td>1033</td><td>0</td><td>2</td><td>Intel</td><td/><td>1033</td><td>0</td><td>7.95</td><td>1</td><td>2048</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>75805</td><td/><td/><td/><td>3</td></row>
+		<row><td>Debug</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>2</td><td>2</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>0</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>8464397</td><td/><td/><td/><td/></row>
 		<row><td>SingleImage</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>1</td><td>1033</td><td>0</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>0</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>108573</td><td/><td/><td/><td>3</td></row>
 		<row><td>WebDeployment</td><td>Express</td><td>&lt;ISProjectDataFolder&gt;</td><td>PackageName</td><td>4</td><td>1033</td><td>2</td><td>1</td><td>Intel</td><td/><td>1033</td><td>0</td><td>0</td><td>0</td><td>0</td><td/><td>0</td><td/><td>MediaLocation</td><td/><td>http://</td><td/><td/><td/><td/><td>124941</td><td/><td/><td/><td>3</td></row>
 	</table>
@@ -2444,6 +2450,7 @@
 		<row><td>DVD-18</td><td>Express</td><td>0</td><td>http://</td><td>0</td><td>install</td><td>install</td><td>[LocalAppDataFolder]Downloaded Installations</td><td>0</td><td>http://www.installengine.com/Msiengine20</td><td>http://www.installengine.com/Msiengine20</td><td>0</td><td>http://www.installengine.com/cert05/isengine</td><td>0</td><td/><td/><td/><td>3</td><td>http://www.installengine.com/cert05/dotnetfx</td><td>0</td><td>1033</td><td/><td/><td/><td/><td/><td>3</td><td/><td>http://www.installengine.com/Msiengine30</td><td/></row>
 		<row><td>DVD-5</td><td>Express</td><td>0</td><td>http://</td><td>0</td><td>install</td><td>install</td><td>[LocalAppDataFolder]Downloaded Installations</td><td>0</td><td>http://www.installengine.com/Msiengine20</td><td>http://www.installengine.com/Msiengine20</td><td>0</td><td>http://www.installengine.com/cert05/isengine</td><td>0</td><td/><td/><td/><td>3</td><td>http://www.installengine.com/cert05/dotnetfx</td><td>0</td><td>1033</td><td/><td/><td/><td/><td/><td>3</td><td/><td>http://www.installengine.com/Msiengine30</td><td/></row>
 		<row><td>DVD-9</td><td>Express</td><td>0</td><td>http://</td><td>0</td><td>install</td><td>install</td><td>[LocalAppDataFolder]Downloaded Installations</td><td>0</td><td>http://www.installengine.com/Msiengine20</td><td>http://www.installengine.com/Msiengine20</td><td>0</td><td>http://www.installengine.com/cert05/isengine</td><td>0</td><td/><td/><td/><td>3</td><td>http://www.installengine.com/cert05/dotnetfx</td><td>0</td><td>1033</td><td/><td/><td/><td/><td/><td>3</td><td/><td>http://www.installengine.com/Msiengine30</td><td/></row>
+		<row><td>Debug</td><td>Express</td><td>0</td><td>http://</td><td>0</td><td>install</td><td>install</td><td>[LocalAppDataFolder]Downloaded Installations</td><td>0</td><td>http://www.installengine.com/Msiengine20</td><td>http://www.installengine.com/Msiengine20</td><td/><td>http://www.installengine.com/cert05/isengine</td><td/><td/><td/><td/><td>3</td><td>http://www.installengine.com/cert05/dotnetfx</td><td>0</td><td>1033</td><td/><td/><td/><td/><td>16</td><td>3</td><td>16</td><td>http://www.installengine.com/Msiengine30</td><td/></row>
 		<row><td>SingleImage</td><td>Express</td><td>0</td><td>http://</td><td>0</td><td>install</td><td>install</td><td>[LocalAppDataFolder]Downloaded Installations</td><td>1</td><td>http://www.installengine.com/Msiengine20</td><td>http://www.installengine.com/Msiengine20</td><td>0</td><td>http://www.installengine.com/cert05/isengine</td><td>0</td><td/><td/><td/><td>3</td><td>http://www.installengine.com/cert05/dotnetfx</td><td>0</td><td>1033</td><td/><td/><td/><td/><td/><td>3</td><td/><td>http://www.installengine.com/Msiengine30</td><td/></row>
 		<row><td>WebDeployment</td><td>Express</td><td>0</td><td>http://</td><td>0</td><td>setup</td><td>Default</td><td>[LocalAppDataFolder]Downloaded Installations</td><td>2</td><td>http://www.Installengine.com/Msiengine20</td><td>http://www.Installengine.com/Msiengine20</td><td>0</td><td>http://www.installengine.com/cert05/isengine</td><td>0</td><td/><td/><td/><td>3</td><td>http://www.installengine.com/cert05/dotnetfx</td><td>0</td><td>1033</td><td/><td/><td/><td/><td/><td>3</td><td/><td>http://www.installengine.com/Msiengine30</td><td/></row>
 	</table>
@@ -3454,6 +3461,7 @@
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>2107948819</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>Launch StockWatch</td><td>0</td><td/><td>1042595921</td></row>
 		<row><td>IDS_SHORTCUT_DISPLAY_NAME3</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>1042551025</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME4</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>1042558388</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>2107932371</td></row>
@@ -3742,10 +3750,11 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>2107932371</td></row>
-		<row><td>ID_STRING1</td><td>1033</td><td>http://www.StockWatch.com</td><td>0</td><td/><td>1042573329</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td>http://www.github.com/azer0s/StockWatch</td><td>0</td><td/><td>1042562516</td></row>
 		<row><td>ID_STRING2</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>1042573329</td></row>
 		<row><td>ID_STRING3</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>2107950867</td></row>
 		<row><td>ID_STRING4</td><td>1033</td><td>Launch StockWatch</td><td>0</td><td/><td>1042554993</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>StockWatch</td><td>0</td><td/><td>1042560436</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>2107932371</td></row>
 	</table>
 
@@ -3860,7 +3869,9 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I2">ISIconIndex</col>
 		<row><td>ARPPRODUCTICON.exe</td><td/><td>&lt;ISProductFolder&gt;\redist\Language Independent\OS Independent\setupicon.ico</td><td>0</td></row>
+		<row><td>StockWatch.exe1_B204D790437848D285C8B076A12D1E30.exe</td><td/><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe</td><td>0</td></row>
 		<row><td>StockWatch.exe_893F8EBE7D9F4EFBA93A5D1DB26F4368.exe</td><td/><td>C:\Users\ariel\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe</td><td>0</td></row>
+		<row><td>StockWatch.exe_9FF8FC0428C5410289BE71E086406324.exe</td><td/><td>D:\Documents\Visual Studio 2015\Projects\StockWatch\StockWatch\bin\Release\StockWatch.exe</td><td>0</td></row>
 	</table>
 
 	<table name="IniFile">
@@ -3975,8 +3986,8 @@
 		<col def="S0">Value</col>
 		<row><td>ActiveLanguage</td><td>1033</td></row>
 		<row><td>Comments</td><td/></row>
-		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="de9f554a3bc05c12be9c31b998217995">
-UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
+		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="2d0bdca6979a791572d1560f0dcff863">
+RABlAGIAdQBnAAEARQB4AHAAcgBlAHMAcwA=
 			</td></row>
 		<row><td>DefaultProductConfiguration</td><td>Express</td></row>
 		<row><td>EnableSwidtag</td><td>1</td></row>
@@ -4338,7 +4349,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>IS_SQLSERVER_USERNAME</td><td>sa</td><td/></row>
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
 		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
-		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{EE51A8F2-B521-4C29-955C-EDB331A88784}</td><td/></row>
+		<row><td>LAUNCHPROGRAMCOMPCODE</td><td>{2C923C16-CAC1-4C5A-9DAB-18BB6ADC0F99}</td><td/></row>
 		<row><td>LAUNCHPROGRAMFILEKEY</td><td>stockwatch.exe</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
@@ -4370,7 +4381,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGRAMFILETOLAUNCHATEND</td><td>[INSTALLDIR]StockWatch.exe</td><td/></row>
 		<row><td>ProductCode</td><td>{F0EBD172-1611-4F0B-9FC2-8B9332E21FCC}</td><td/></row>
 		<row><td>ProductName</td><td>StockWatch</td><td/></row>
-		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
+		<row><td>ProductVersion</td><td>2.1</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
 		<row><td>ProgressType2</td><td>installed</td><td/></row>
@@ -4532,7 +4543,8 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
-		<row><td>StockWatch.exe</td><td>stockw_1_stockwatch</td><td>##IDS_SHORTCUT_DISPLAY_NAME3##</td><td>StockWatch.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>StockWatch.exe_893F8EBE7D9F4EFBA93A5D1DB26F4368.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>StockWatch.exe</td><td>stockw_1_stockwatch</td><td>##IDS_SHORTCUT_DISPLAY_NAME4##</td><td>StockWatch.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>StockWatch.exe_9FF8FC0428C5410289BE71E086406324.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>StockWatch.exe1</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME4##</td><td>StockWatch.exe</td><td>AlwaysInstall</td><td/><td/><td/><td>StockWatch.exe1_B204D790437848D285C8B076A12D1E30.exe</td><td>1</td><td>1</td><td>INSTALLDIR</td><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">
