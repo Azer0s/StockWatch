@@ -227,7 +227,9 @@ namespace StockWatch
                         i++;
                     }
                 }
+#if DEBUG
                 Console.WriteLine(UnixTimeStampToDateTime(data.series[data.series.Count - 1].Timestamp));
+#endif
             }
             catch (Exception)
             {
